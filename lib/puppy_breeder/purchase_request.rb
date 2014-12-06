@@ -3,7 +3,7 @@ module PuppyBreeder
   class PurchaseRequest
     attr_accessor :type, :customer
    
-    @@requests = PuppyBreeder::PurchaseRequest.new
+    @@requests = PuppyBreeder::PurchasesRepo.new
 
     def initialize(customer, type)
       @customer = customer
@@ -16,12 +16,13 @@ module PuppyBreeder
     end 
 
     def self.clear_requests
-      @@requests = PuppyBreeder::PurchaseRequest.new
+      @@requests = PuppyBreeder::PurchasesRepo.new
     end 
 
     def self.get_request(customer)
-      @@requests[customer]
+      @@requests.get_request(customer)
     end  
 
+    
   end
 end
