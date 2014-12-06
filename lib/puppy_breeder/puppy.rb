@@ -18,8 +18,13 @@ module PuppyBreeder
       @@puppies[type] += type.num
     end  
 
-    def self.puppy_total(type) 
-      @@puppies[type]
+    def self.puppy_total(type)   
+      @@puppies.get_pup(type)
+
+    end  
+
+    def self.clear_pups
+      @@puppies = PuppyBreeder::PuppyRepo.new
     end  
   end
 end

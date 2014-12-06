@@ -3,6 +3,7 @@ require_relative 'spec_helper.rb'
 describe "PuppyBreeder::BreedsRepo" do
   before(:each) do 
     PuppyBreeder::Breed.clear_breeds
+    PuppyBreeder::Puppy.clear_pups
   end
   
   describe "#set_breed_price" do
@@ -41,12 +42,7 @@ describe "PuppyBreeder::BreedsRepo" do
         expect(puppy.number).to eq(3)
       end 
     end
-    
-    context "puppies key exists" do
-      it "adds puppies onto existing key" do
-
-      end
-    end    
+      
   end 
 
   describe "#puppy_total" do
@@ -59,10 +55,10 @@ describe "PuppyBreeder::BreedsRepo" do
 
     context "amount set" do 
       it "return amount" do
-        new_puppy = PuppyBreeder::Puppy.add_puppy("Husky",4)
+        new_puppy = PuppyBreeder::Puppy.add_new("Husky",4)
         old_puppy = PuppyBreeder::Puppy.puppy_total("Husky")
         expect(new_puppy.number).to eq(4)
-        expect(old_puppy.number).to eq(4)
+        expect(old_puppy.number).to eq(new_puppy.number)
       end  
     end    
   end 
