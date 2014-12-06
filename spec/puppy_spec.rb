@@ -1,6 +1,6 @@
 require_relative 'spec_helper.rb'
 
-describe PuppyBreeder::Breed do
+describe "PuppyBreeder::BreedsRepo" do
   before(:each) do 
     PuppyBreeder::Breed.clear_breeds
   end
@@ -35,7 +35,7 @@ describe PuppyBreeder::Breed do
   describe "#add_puppy" do
     context "new puppies added" do
       it "allows me to add puppies!" do
-        puppy = PuppyBreeder::Puppy.add_puppy("poodle",3)
+        puppy = PuppyBreeder::Puppy.add_new("poodle",3)
         expect(puppy).to be_a(PuppyBreeder::Puppy)
         expect(puppy.type).to eq("poodle")
         expect(puppy.number).to eq(3)

@@ -2,25 +2,21 @@
 module PuppyBreeder
   class Puppy
     attr_accessor :type, :number
-    @@puppies = {}
+    @@puppies = PuppyBreeder::PuppyRepo.new
 
     def initialize(type, number)
       @type = type
       @number = number
     end  
 
-    def self.add_puppy(type,num)
-      if (@@puppies.has_key?(type))
-        @@puppies[type] = Puppy.new(type,num)
-        else
-        @@puppies[type] += num
-      end     
+    def self.add_new(type,num)
+      puppy = Puppy.new(type,num)
+      @@puppies.add_pup(puppy)
     end  
 
-    # def self.add_puppy(type,num)
-    #   puts "Check puppy hash: #{@@puppies[type]}"
-    #   @@puppies[type] += num
-    # end  
+    def self.add_puppy(type,num)
+      @@puppies[type] += type.num
+    end  
 
     def self.puppy_total(type) 
       @@puppies[type]
