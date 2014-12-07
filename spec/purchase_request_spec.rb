@@ -45,6 +45,51 @@ describe PuppyBreeder::PurchaseRequest do
       expect(request.status).to eq("Complete")
       expect(puppy.number).to eq(1)  
     end  
-  end  
+  end 
+
+  describe "#get_sales" do
+    it "will return [] if no sales have been made" do
+      request1 = PuppyBreeder::PurchaseRequest.add_request("Adam","Chihuahua")
+      request2 = PuppyBreeder::PurchaseRequest.add_request("Becca","Rottweiler")
+      sales = PuppyBreeder::PurchaseRequest.get_sales
+      expect(sales).to eq([])
+    end  
+
+    it "will return completed sales if sales are made" do
+      request1 = PuppyBreeder::PurchaseRequest.add_request("Suzy","German Shepherd")
+      request2 = PuppyBreeder::PurchaseRequest.add_request("Matt","Australian Shepherd")
+      puppy1 = PuppyBreeder::Puppy.add_new("German Shepherd",4)
+      puppy2 = PuppyBreeder::Puppy.add_new("Australian Shedpherd",3)
+      make_request1 = PuppyBreeder::PurchaseRequest.make_purchase("Suzy",2,puppy1)
+      make_request2 = PuppyBreeder::PurchaseRequest.make_purchase("Matt",3,puppy2)
+      sales1 = PuppyBreeder::PurchaseRequest.get_sales
+      expect(sales1[0]).to eq(request1) 
+      expect(sales1[1]).to eq(request2)
+    end  
+  end 
    
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

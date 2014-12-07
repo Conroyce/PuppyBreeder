@@ -18,4 +18,14 @@ class PuppyBreeder::PurchasesRepo
   def complete_request(customer)
     @purchase_hash[customer].status = "Complete"
   end  
+
+  def eaches
+    arr = []
+    @purchase_hash.each do |key,value|
+      if (value.status == "Complete")
+        arr.push(value)
+      end
+    end
+    arr    
+  end  
 end  

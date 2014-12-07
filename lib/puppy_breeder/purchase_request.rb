@@ -37,6 +37,15 @@ module PuppyBreeder
       end  
     end 
 
+    def self.get_sales
+      @@requests.eaches
+      #   arr = []
+      #   if (value.status == "Completed")
+      #     arr.push(value)
+      #   end
+      #   arr  
+      # end  
+    end  
     # def self.view_pending
     # end
 
