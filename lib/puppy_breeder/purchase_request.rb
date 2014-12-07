@@ -28,28 +28,18 @@ module PuppyBreeder
       @@requests.get_request(customer)
     end  
 
-    def self.make_purchase(customer,num=1,puppy=nil)
-      if (num == 1) 
+    def self.make_purchase(customer,num=1,puppy)
+      if (num > puppy.number) 
         @@requests.make_request(customer)
-      elsif (num <= puppy.number && puppy.number-num >= 0)
+      elsif (num <= puppy.number)
         @@requests.complete_request(customer)
         puppy.number -= num  
       end  
     end 
 
     def self.get_sales
-      @@requests.eaches
-      #   arr = []
-      #   if (value.status == "Completed")
-      #     arr.push(value)
-      #   end
-      #   arr  
-      # end  
+      @@requests.eaches  
     end  
-    # def self.view_pending
-    # end
-
-    # def self.view_completed
-    # end    
+     
   end
 end

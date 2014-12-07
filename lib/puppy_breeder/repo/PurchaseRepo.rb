@@ -22,7 +22,7 @@ class PuppyBreeder::PurchasesRepo
   def eaches
     arr = []
     @purchase_hash.each do |key,value|
-      if (value.status == "Complete")
+      if (value.status == "Complete" || value.status == "Pending")
         arr.push(value)
       end
     end
