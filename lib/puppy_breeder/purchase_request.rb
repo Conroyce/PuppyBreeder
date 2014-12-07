@@ -6,14 +6,13 @@ module PuppyBreeder
     
     @@requests = PuppyBreeder::PurchasesRepo.new
     @@sales = 0
-    # @@complete = PuppyBreeder::CompsRepo.new
     
     def initialize(customer, type)
       @customer = customer
       @type = type
       @status = nil
     end
-    #pending: name,puppy,price?
+    
     def self.add_request(customer,type) 
       new_req = PurchaseRequest.new(customer,type)
       @@requests.add_request(new_req)
@@ -24,7 +23,7 @@ module PuppyBreeder
       @@pending = PuppyBreeder::PendsRepo.new
     end 
 
-    def self.get_request(customer)
+    def self.get_requests(customer)
       @@requests.get_request(customer)
     end  
 
@@ -36,6 +35,10 @@ module PuppyBreeder
         puppy.number -= num  
       end  
     end 
+
+    def self.on_hold(customer)
+      @@requests.make_hold(customer)
+    end  
 
     def self.get_sales
       @@requests.eaches  

@@ -16,7 +16,7 @@ describe PuppyBreeder::PurchaseRequest do
   describe "#get_request" do
     context "no customer is created" do
       it "will return nil" do
-        request = PuppyBreeder::PurchaseRequest.get_request("Jim")
+        request = PuppyBreeder::PurchaseRequest.get_requests("Jim")
         expect(request).to eq(nil)
       end
     end 
@@ -24,7 +24,7 @@ describe PuppyBreeder::PurchaseRequest do
     context "customer is added" do
       it "will return customer info" do
         old_request = PuppyBreeder::PurchaseRequest.add_request("Sandra","Pomeranian")
-        new_request = PuppyBreeder::PurchaseRequest.get_request("Sandra")
+        new_request = PuppyBreeder::PurchaseRequest.get_requests("Sandra")
         expect(new_request.customer).to eq(old_request.customer)
         expect(new_request.type).to eq("Pomeranian")
       end
@@ -77,7 +77,17 @@ describe PuppyBreeder::PurchaseRequest do
       expect(sales[2]).to eq(pend_request)
     end 
   end 
-   
+  
+  describe "purchase request on hold" do 
+    it "will not be visible when checking requests" do 
+      request = PuppyBreeder::PurchaseRequest.add_request("Jim","Great Dane")
+      hold_me = PuppyBreeder::PurchaseRequest.on_hold("Jim")
+      the_request = PuppyBreeder::PurchaseRequest.get_requests("Jim")
+
+      expect(the_request).to eq(nil)
+      expect(request.status).to eq("Hold")
+    end  
+  end 
 end
 
 

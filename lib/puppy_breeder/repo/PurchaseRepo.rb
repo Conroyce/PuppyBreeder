@@ -8,7 +8,11 @@ class PuppyBreeder::PurchasesRepo
   end
 
   def get_request(customer)
-    @purchase_hash[customer]
+    if (@purchase_hash.has_key?(customer) && @purchase_hash[customer].status == nil) #could be problematic when switching to databases
+      @purchase_hash[customer] 
+    else 
+      nil
+    end  
   end
   
   def make_request(customer)
@@ -17,6 +21,10 @@ class PuppyBreeder::PurchasesRepo
 
   def complete_request(customer)
     @purchase_hash[customer].status = "Complete"
+  end  
+
+  def make_hold(customer)
+    @purchase_hash[customer].status = "Hold"
   end  
 
   def eaches
