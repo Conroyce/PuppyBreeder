@@ -1,7 +1,7 @@
 module PuppyBreeder
   class Breed
     attr_accessor :type, :price
-    
+    attr_reader :breeds
     @@breeds = PuppyBreeder::BreedsRepo.new
 
     def initialize(type, price = 1000)

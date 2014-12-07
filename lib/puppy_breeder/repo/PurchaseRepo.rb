@@ -9,5 +9,13 @@ class PuppyBreeder::PurchasesRepo
 
   def get_request(customer)
     @purchase_hash[customer]
-  end    
+  end
+  
+  def make_request(customer)
+    @purchase_hash[customer].status = "Pending"
+  end 
+
+  def complete_request(customer)
+    @purchase_hash[customer].status = "Complete"
+  end  
 end  

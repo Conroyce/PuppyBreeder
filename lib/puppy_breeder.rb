@@ -2,6 +2,7 @@
 module PuppyBreeder
 end
 
+require_relative 'puppy_breeder/repo/PendingRepo.rb'
 require_relative 'puppy_breeder/repo/BreedRepo.rb'
 require_relative 'puppy_breeder/repo/puppyRepo.rb'
 require_relative 'puppy_breeder/repo/PurchaseRepo.rb'

@@ -2,6 +2,7 @@
 module PuppyBreeder
   class Puppy
     attr_accessor :type, :number
+    attr_reader :puppies
     @@puppies = PuppyBreeder::PuppyRepo.new
 
     def initialize(type, number)

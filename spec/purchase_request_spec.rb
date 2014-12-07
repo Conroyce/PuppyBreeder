@@ -25,14 +25,26 @@ describe PuppyBreeder::PurchaseRequest do
       it "will return customer info" do
         old_request = PuppyBreeder::PurchaseRequest.add_request("Sandra","Pomeranian")
         new_request = PuppyBreeder::PurchaseRequest.get_request("Sandra")
-        # expect(old_request.customer).to eq("Sandra")
         expect(new_request.customer).to eq(old_request.customer)
         expect(new_request.type).to eq("Pomeranian")
       end
     end    
   end  
   
-  
+  describe "#make_purchase" do 
+    it "will add pending status upon making purchase" do
+      request = PuppyBreeder::PurchaseRequest.add_request("Greg","Lab")
+      pend_request = PuppyBreeder::PurchaseRequest.make_purchase("Greg")
+      expect(request.status).to eq("Pending")
+    end
 
+    it "will add complete status upon completing purchase" do
+      puppy = PuppyBreeder::Puppy.add_new("Great Dane",5)
+      request = PuppyBreeder::PurchaseRequest.add_request("Bob","Great Dane")
+      comp_request = PuppyBreeder::PurchaseRequest.make_purchase("Bob",4,puppy)
+      expect(request.status).to eq("Complete")
+      expect(puppy.number).to eq(1)  
+    end  
+  end  
    
 end
